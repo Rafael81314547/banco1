@@ -1,3 +1,7 @@
+import 'package:banco1/view/email.dart';
+import 'package:banco1/view/carrinho.dart';
+import 'package:banco1/view/generator_page.dart';
+import 'package:banco1/view/produto.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -48,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = Carrinho();
         break;
       case 3:
-        page = Ajuda();
+        page = Email();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -75,8 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: Text('Carrinho'),
                   ),
                   const NavigationRailDestination(
-                    icon: Icon(Icons.help),
-                    label: Text('Ajuda'),
+                    icon: Icon(Icons.email),
+                    label: Text('Email'),
                   ),
                 ],
                 selectedIndex: selectedIndex,
@@ -101,54 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class GeneratorPage extends StatelessWidget {
-  var _controller = TextEditingController();
-  var _controller2 = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-
-    return ListView(
-      children: <Widget>[
-        Center(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Text("Acesso ao perfil"),
-          ),
-        ),
-        TextFormField(
-          controller: _controller,
-          decoration: InputDecoration(hintText: 'Nome Completo'),
-          maxLength: 100,
-          //validator: _validarName,
-          onSaved: (String? val) {},
-        ),
-        TextFormField(
-            controller: _controller2,
-            decoration: InputDecoration(hintText: 'Idade'),
-            keyboardType: TextInputType.number,
-            maxLength: 3,
-            //validator: _validarIdade,
-            onSaved: (String? val) {}),
-        SizedBox(height: 15.0),
-        ElevatedButton(
-          onPressed: () {
-            // TO DO:
-          },
-          child: Text('Enviar'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            _controller.clear();
-            _controller2.clear();
-          },
-          child: Text('Limpar'),
-        )
-      ],
-    );
-  }
-}
+class Enviar {}
 
 class BigCard extends StatelessWidget {
   const BigCard({
@@ -205,33 +162,6 @@ class MyAppState extends ChangeNotifier {
       favorites.remove(pair);
     }
     notifyListeners();
-  }
-}
-
-class Carrinho extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Carrinho'),
-    );
-  }
-}
-
-class Ajuda extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Ajuda'),
-    );
-  }
-}
-
-class Produto extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Produto'),
-    );
   }
 }
 
