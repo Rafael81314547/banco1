@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class TodoModel {
   String? id;
@@ -51,4 +52,17 @@ class TodoModel {
       criadoEm: criadoEm ?? this.criadoEm,
     );
   }
+  Factory TodoModel.FromFirestore(
+  DocumentSnapshot<Map<String, dynamic>> snapshot,
+  SnapshotOptions? options,
+ ) {
+   final data = snapshot.data();
+   return TodoModel(
+     id: data!['id'],
+     nome: data! ['id'],
+     status: data['status'],
+     criadoEm: data['criadorEm']);
+ }
 }
+
+ 
